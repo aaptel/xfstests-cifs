@@ -1,0 +1,10 @@
+# Exclude list for tests that are very slow on a network
+#
+generic/129
+generic/438
+generic/476
+
+generic/007
+generic/100
+generic/133
+generic/310

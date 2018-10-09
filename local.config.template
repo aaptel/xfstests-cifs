@@ -1,0 +1,33 @@
+[smb3]
+FSTYP=cifs
+TEST_DEV=//@HOST@/@TEST_SHARE@
+TEST_DIR=/mnt/test
+TEST_FS_MOUNT_OPTS='-ousername=@USER@,password=@PW@,noperm,vers=3.0,mfsymlinks,actimeo=0'
+export MOUNT_OPTIONS='-ousername=@USER@,password=@PW@,noperm,mfsymlinks,actimeo=0'
+export SCRATCH_DEV=//@HOST@/@SCRATCH_SHARE@
+export SCRATCH_MNT=/mnt/scratch
+[smb21]
+FSTYP=cifs
+TEST_DEV=//@HOST@/@TEST_SHARE@
+TEST_DIR=/mnt/test
+TEST_FS_MOUNT_OPTS='-ousername=@USER@,password=@PW@,noperm,vers=2.1,mfsymlinks,actimeo=0'
+[smb2]
+FSTYP=cifs
+TEST_DEV=//@HOST@/@TEST_SHARE@
+TEST_DIR=/mnt/test
+TEST_FS_MOUNT_OPTS='-ousername=@USER@,password=@PW@,noperm,vers=2.0,mfsymlinks,actimeo=0'
+[cifs]
+FSTYP=cifs
+TEST_DEV=//@HOST@/@TEST_SHARE@
+TEST_DIR=/mnt/test
+TEST_FS_MOUNT_OPTS='-ousername=@USER@,password=@PW@,noperm,cifsacl,vers=1.0,mfsymlinks,actimeo=0'
+[sambacifs]
+FSTYP=cifs
+TEST_DEV=//@HOST@/@TEST_SHARE@
+TEST_DIR=/mnt/test
+TEST_FS_MOUNT_OPTS='-ousername=@USER@,password=@PW@,nounix,noperm,cifsacl,vers=1.0,mfsymlinks,actimeo=0'
+[sambacifswithposixextensions]
+FSTYP=cifs
+TEST_DEV=//@HOST@/@TEST_SHARE@
+TEST_DIR=/mnt/test
+TEST_FS_MOUNT_OPTS='-ousername=@USER@,password=@PW@,vers=1.0,actimeo=0'

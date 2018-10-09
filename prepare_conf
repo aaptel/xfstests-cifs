@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+import os
+import sys
+import re
+import subprocess
+import argparse
+from pprint import pprint as P
+import json
+
+VARS = {
+    'RES_USER': 'SSH user for storing results',
+    'RES_HOST': 'SSH host for storing results',
+    'RES_PATH': 'remote path for storing results',
+    'HOST': 'SMB server',
+    'TEST_SHARE': 'SMB test share',
+    'SCRATCH_SHARE': 'SMB scratch share',
+    'USER': 'SMB user',
+    'PW': 'SMB password',
+    'TESTS': 'list of individual test to run',
+}
+
+def process_template(env, fn, out=None):
+    if out is None:
+        out = re.sub(r'''\.template$''', '', fn)
+    if out == fn:
+        die("output file will overwrite input file for %s"%fn)
+    s = ""
+    mode = None
+    with open(fn) as fin:
+        s = fin.read()
+        mode = os.fstat(fin.fileno()).st_mode
+        def varsub(m):
+            v = m.group(1)
+            if v not in env:
+                die("cant replace var %s in %s"%(v, fn))
+            return env[v]
+
+        s = re.sub(r'''@([a-zA-Z_]+)@''', varsub, s)
+
+    with open(out, "w+") as fout:
+        fout.write(s)
+        os.fchmod(fout.fileno(), mode)
+
+def var_to_opt(var):
+    var = var.replace("_", "-").lower()
+    return "--set-%s"%var
+
+def main():
+    ap = argparse.ArgumentParser(description="prepare xfstests conf")
+    ap.add_argument("-c", "--conf", help="config path")
+    env = {}
+    for v,h in VARS.items():
+        ap.add_argument(var_to_opt(v), dest=v, help=h)
+    ap.add_argument("path", help="path to process")
+    args = ap.parse_args()
+
+    if args.conf:
+        with open(args.conf) as f:
+            env = json.loads(f.read())
+    for v,h in VARS.items():
+        if v in args:
+            x = getattr(args, v)
+            if x is not None:
+                env[v] = x
+
+    for root, dirs, files in os.walk(args.path):
+        for name in files:
+            fn = os.path.join(root, name)
+            if '.template' in name:
+                print("processing %s..."%fn)
+                process_template(env, fn)
+
+def die(s):
+    print("[E]", s, file=sys.stderr)
+    exit(1)
+
+if __name__ == '__main__':
+    main()

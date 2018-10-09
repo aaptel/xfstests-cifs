@@ -1,0 +1,108 @@
+# Exclude list for tests that we know are broken in smb3
+#
+generic/011 # "dirstress 5 processes"
+generic/020 # EA keys are not case preserving
+generic/023 # Rename of directory onto directory. Wrong return code.
+generic/035 # SMB2+ does not allow rename onto an open file.
+generic/037
+generic/062
+generic/070 # xattr not supported for SMB3
+generic/071
+generic/074
+generic/075 # fsx with zero data
+generic/081 # fsx failure
+generic/087 # ownership bug
+generic/088 # ownership bug
+generic/089
+generic/091
+generic/097
+generic/117 # cifs crash
+generic/120
+generic/126 # needs usermapping
+generic/127 # fsx failure
+generic/130
+generic/131 # no advisory locking
+generic/184 # mknod
+generic/192 # mtime/ctime failure
+generic/193 # needs usermapping
+generic/209 # aio readahead file corruption
+generic/236
+generic/237 # needs posix acl support
+generic/245 # Rename of directory onto directory. Wrong return code.
+generic/258 # "Testing for negative seconds since the epoch" fails to Samba works to Windows (not client problem - Samba server bug)
+generic/263 # fsx failure
+generic/270 # Adding quota support would be required for test 270
+generic/277
+generic/313 # mtime/ctime failure
+generic/314 # needs posix acl support
+generic/294
+generic/306
+generic/313
+generic/314
+generic/317
+generic/318
+generic/319
+generic/337
+generic/377
+generic/379
+generic/380
+generic/381
+generic/382
+generic/383
+generic/385
+generic/387
+generic/388
+generic/390
+generic/392
+generic/393
+generic/395
+generic/396
+generic/397
+generic/398
+generic/399
+generic/401
+generic/402
+generic/403
+generic/405
+generic/406
+generic/409
+generic/410
+generic/411
+generic/412
+generic/413
+generic/414
+generic/415
+generic/416
+generic/417
+generic/419
+generic/421
+generic/422
+generic/423
+generic/424
+generic/425
+generic/427
+generic/429
+generic/430
+generic/431
+generic/434
+generic/435
+generic/439
+generic/440
+generic/441
+generic/442
+generic/446
+generic/447
+generic/449
+generic/452
+generic/453
+generic/454
+generic/455
+generic/456
+generic/457
+generic/458
+generic/459
+generic/460
+generic/461
+generic/462
+generic/464
+generic/466

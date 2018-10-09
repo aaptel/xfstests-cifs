@@ -1,0 +1,10 @@
+{
+    "RES_HOST": "10.73.1.144",
+    "RES_USER": "aaptel",
+    "RES_PATH": "/home/aaptel/prog/xfstests-results",
+    "HOST": "10.73.1.144",
+    "USER": "aaptel",
+    "PW": "aaptel",
+    "TEST_SHARE": "test",
+    "SCRATCH_SHARE": "scratch"
+}
